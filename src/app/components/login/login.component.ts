@@ -12,6 +12,8 @@ import { GlobalVariablesService } from 'src/app/services/globalvars/global-varia
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule]
 })
+
+
 export class LoginComponent  implements OnInit {
 
   enteredUser = {

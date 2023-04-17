@@ -17,8 +17,9 @@ export class HomePage implements OnInit {
   loggedIn = false;
 
   constructor(public modalCtrl: ModalController, public global: GlobalVariablesService ) { 
-    
+    if(!global.loggedIn){
     this.openLogin()
+    }
     
   }
 
