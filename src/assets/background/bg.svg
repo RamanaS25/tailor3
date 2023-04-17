@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  <!-- Set the black background -->
+  <rect width="100%" height="100%" fill="black" />
+
+  <!-- Create minimalistic gray pattern -->
+  <pattern id="grayPattern" patternUnits="userSpaceOnUse" width="10" height="10" viewBox="0 0 10 10">
+    <circle cx="5" cy="5" r="1" fill="gray" />
+  </pattern>
+
+  <!-- Apply the pattern to a rectangle that covers the entire SVG -->
+  <rect width="100%" height="100%" fill="url(#grayPattern)" />
+</svg>

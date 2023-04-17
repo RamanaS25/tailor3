@@ -3,6 +3,8 @@ import { CommonModule, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ModalController } from '@ionic/angular';
 import { LoginComponent } from '../components/login/login.component';
+import { GlobalVariablesService } from '../services/globalvars/global-variables.service';
+
 
 @Component({
   selector: 'app-home',
@@ -14,9 +16,10 @@ import { LoginComponent } from '../components/login/login.component';
 export class HomePage implements OnInit {
   loggedIn = false;
 
-  constructor(public modalCtrl: ModalController) { 
+  constructor(public modalCtrl: ModalController, public global: GlobalVariablesService ) { 
     
     this.openLogin()
+    
   }
 
   ngOnInit() {
@@ -31,7 +34,7 @@ export class HomePage implements OnInit {
 
      modal.onDidDismiss().then((dataReturned) => {
       if (dataReturned !== null) {
-        this.loggedIn = dataReturned.data;
+       
         
       }
     });

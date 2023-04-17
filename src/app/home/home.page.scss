@@ -1,0 +1,16 @@
+.card-square {
+  --rectangle-width: 300px; /* Updated width */
+  --rectangle-height: 150px;
+  width: var(--rectangle-width);
+  height: var(--rectangle-height);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px; /* Add this line to create rounded corners */
+  transition: transform 0.3s ease-out; /* Adjust the duration and easing function for a smoother transition */
+}
+.card-square:hover {
+  transform: translateY(-5px); /* Add this line to move the card up when hovering */
+  cursor: pointer; /* Add this line to change the mouse pointer */
+}

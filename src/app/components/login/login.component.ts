@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ModalController } from '@ionic/angular';
+import { GlobalVariablesService } from 'src/app/services/globalvars/global-variables.service';
+
 
 @Component({
   selector: 'app-login',
@@ -34,7 +36,7 @@ export class LoginComponent  implements OnInit {
 
   ]
 
-  constructor(public modalCtrl: ModalController) { }
+  constructor(public modalCtrl: ModalController, public global: GlobalVariablesService) { }
 
   ngOnInit() {}
 
@@ -48,13 +50,29 @@ export class LoginComponent  implements OnInit {
     for(let x in this.users){
       console.log(this.users[x].username)
       if(this.users[x].username === this.enteredUser.username && this.users[x].password === this.enteredUser.password){
+
+        this.global.user = this.enteredUser
+        this.global.loggedIn = true
         
+
         this.closeModal()
+        
+       
         console.log('done')
+         break
       }
     }
 
 
+  }
+
+  devSignIn(){
+    this.global.user = this.users[0]
+    this.global.loggedIn = true
+    
+
+    this.closeModal()
+    
   }
 
 
