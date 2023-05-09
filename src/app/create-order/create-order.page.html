@@ -1,0 +1,221 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button  *ngIf="showBackButton" defaultHref="/orders"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid fixed>
+    <ion-row>
+
+      <ion-col size="6">
+        <ion-card class="transparent-card">
+
+         <ion-card-content>
+           <img [src]="orderLink" alt="">
+             <ion-item lines="none">
+               <ion-icon slot="start" name="arrow-back" color="primary" class="ion-ripple-effect" (click)="orderLink = '../../assets/clothAssets/shirt.svg'; selectedModel = 'Kurta'"></ion-icon>
+               <ion-icon slot="end" name="arrow-forward" color="primary" (click)="orderLink = '../../assets/clothAssets/pants.png'; selectedModel = 'pants'"></ion-icon>
+               <ion-ripple-effect color="secondary" type="unbounded"></ion-ripple-effect>
+             </ion-item>
+         </ion-card-content>
+           
+        </ion-card>
+        
+        <ion-item lines="none"  color="dark" class="itemClass" (click)="isToastOpen = !isToastOpen" *ngIf="selectedCustomer === null">
+          <div class="centered-content">
+            <ion-label>Place Order: Rs.792</ion-label>
+            
+          </div>
+        </ion-item>
+
+        <ion-item lines="none"  color="success" class="itemClass" (click)="isToastOpen = !isToastOpen" *ngIf="selectedCustomer != null">
+          <div class="centered-content">
+            <ion-label>Place Order: Rs.792</ion-label>
+            
+          </div>
+        </ion-item>
+
+        
+      </ion-col>
+
+
+      <ion-col size="6">
+
+        <ion-item lines="none"  color="primary" class="itemClass" (click)="modalOpen = !modalOpen" *ngIf="selectedCustomer === null">
+          <div class="centered-content">
+            <ion-label>Select Customer</ion-label>
+          </div>
+        </ion-item>
+
+        <ion-item lines="none"  color="tertiary" class="itemClass" (click)="modalOpen = !modalOpen" *ngIf="selectedCustomer != null">
+          <div class="centered-content">
+            <ion-label>{{selectedCustomer.firstName}}</ion-label>
+          </div>
+        </ion-item>
+        <div class="scrollable-container1">
+        <ion-card>
+          <ion-card-header>
+            Order Info
+          </ion-card-header>
+          <ion-card-content>
+
+            
+
+            <ion-list>
+              <ion-item>
+                <ion-select aria-label="Fruit"  placeholder="Select Model" [(ngModel)]="selectedModel">
+                  <ion-select-option value="Kurta">Kurta</ion-select-option>
+                  <ion-select-option value="pants">Pants</ion-select-option>
+                  <ion-select-option value="bananas">Dhoti</ion-select-option>
+                </ion-select>
+              </ion-item>
+
+              <ion-item>
+                <ion-select aria-label="Fruit" interface="action-sheet" placeholder="Select Fabric">
+                  <ion-select-option value="apples">Cotton</ion-select-option>
+                  <ion-select-option value="oranges">Wool</ion-select-option>
+                  <ion-select-option value="bananas">Silk</ion-select-option>
+                </ion-select>
+              </ion-item>
+
+              <ion-item>
+                <ion-select aria-label="Fruit" interface="action-sheet" placeholder="Select Color">
+                  <ion-select-option value="apples">Grey</ion-select-option>
+                  <ion-select-option value="oranges">Blue</ion-select-option>
+                  <ion-select-option value="bananas">Black</ion-select-option>
+                </ion-select>
+              </ion-item>
+
+            
+            </ion-list>
+          
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card *ngIf="selectedModel === 'Kurta'">
+          <ion-card-header>
+            Right Sleeve
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-item>
+              <ion-select aria-label="Fruit" interface="action-sheet" placeholder="Select Color">
+                <ion-select-option value="apples">Grey</ion-select-option>
+                <ion-select-option value="oranges">Blue</ion-select-option>
+                <ion-select-option value="bananas">Black</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card *ngIf="selectedModel === 'Kurta'">
+          <ion-card-header>
+            Left Sleeve
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-item>
+              <ion-select aria-label="Fruit" interface="action-sheet" placeholder="Select Color">
+                <ion-select-option value="apples">Grey</ion-select-option>
+                <ion-select-option value="oranges">Blue</ion-select-option>
+                <ion-select-option value="bananas">Black</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card *ngIf="selectedModel === 'Kurta'">
+          <ion-card-header>
+            Torso
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-item>
+              <ion-select aria-label="Fruit" interface="action-sheet" placeholder="Select Color">
+                <ion-select-option value="apples">Grey</ion-select-option>
+                <ion-select-option value="oranges">Blue</ion-select-option>
+                <ion-select-option value="bananas">Black</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card>
+          <ion-card-header>
+            Border Color
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-item>
+              <ion-select aria-label="Fruit" interface="action-sheet" placeholder="Select Color">
+                <ion-select-option value="apples">Grey</ion-select-option>
+                <ion-select-option value="oranges">Blue</ion-select-option>
+                <ion-select-option value="bananas">Black</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card *ngIf="selectedModel === 'pants'">
+          <ion-card-header>
+            Number Of Pockets
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-item>
+              <ion-select aria-label="Fruit" interface="action-sheet" placeholder="Select">
+                <ion-select-option value="apples">None</ion-select-option>
+                <ion-select-option value="oranges">One</ion-select-option>
+                <ion-select-option value="bananas">Two</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+      </div>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+  <ion-modal [isOpen]="modalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Select Customer</ion-title>
+          <ion-buttons slot="end">
+            <ion-button  (click)="modalOpen = !modalOpen">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-searchbar [placeholder]="'Search by ' + sFilter"></ion-searchbar>
+        <ion-chip (click)="sFilter = 'First Name'" color="secondary">First Name</ion-chip>
+        <ion-chip (click)="sFilter = 'Last Name'" color="secondary">Last Name</ion-chip>
+
+               <ion-card *ngFor="let c of customers" (click)="selectedCustomer = c;modalOpen = !modalOpen">
+                <ion-card-header>
+                  <ion-card-title>
+                      {{c.firstName}}
+                  </ion-card-title>
+                </ion-card-header>
+               </ion-card>
+
+
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <ion-toast
+      [isOpen]="isToastOpen"
+       message="Order Has Been Placed"
+      [duration]="2000"
+      (didDismiss)="placeOrder(false)"
+       color="success"
+       position="top"
+    ></ion-toast>
+
+</ion-content>
+

@@ -1,48 +1,62 @@
 
-<ion-header>
-  <ion-toolbar>
 
-   
+<ion-content class="bg">
 
-    <ion-title>Login</ion-title>
-   
-   
-  </ion-toolbar>
-</ion-header>
-<ion-content>
-  
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col sizeLg="3" sizeMd="4" sizeSm="12" sizeXs="12"></ion-col>
+      <ion-col sizeLg="6" sizeMd="4" sizeSm="12" sizeXs="12">
 
-  <ion-item>
-    <ion-label position="floating">
-      User Name
-   </ion-label>
+        
+          <ion-card class="cardStyle">
+                  
 
-    <ion-input  [(ngModel)]="enteredUser.username">
+            <ion-card-content>
+              <ion-item mode="md">
+                <ion-label position="floating">
+                  User Name
+               </ion-label>
       
-    </ion-input>
-  </ion-item>
-
-
-      <ion-item>
-
-      <ion-label position="floating" >
-          Password
-      </ion-label>
+                <ion-input  [(ngModel)]="enteredUser.username">
+                  
+                </ion-input>
+               </ion-item>
       
-      <ion-input required="true"  [(ngModel)]="enteredUser.password">
       
-      </ion-input>
+                  <ion-item mode="md">
       
-      </ion-item>
+                  <ion-label position="floating" >
+                      Password
+                  </ion-label>
+                  
+                  <ion-input required="true"  [(ngModel)]="enteredUser.password">
+                  
+                  </ion-input>
+                  
+                  </ion-item>
+      
+                  <ion-button expand="block" color="primary" (click)="signIn()">
+                    Sign In
+                  </ion-button>
+      
+                  <ion-button expand="block" color="primary" (click)="devSignIn()">
+                    Dev Sign In
+                  </ion-button>
+            </ion-card-content>
 
-      <ion-button expand="block" color="primary" (click)="signIn()">
-        Sign In
-      </ion-button>
+            
 
-      <ion-button expand="block" color="primary" (click)="devSignIn()">
-        Dev Sign In
-      </ion-button>
-      
+          </ion-card>
+       
+                
+       
+         
+
+      </ion-col>
+      <ion-col sizeLg="3" sizeMd="4" sizeSm="12" sizeXs="12"></ion-col>
+    </ion-row>
+  </ion-grid>
+
 
 </ion-content>
 

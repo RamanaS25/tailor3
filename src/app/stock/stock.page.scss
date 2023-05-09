@@ -1,0 +1,32 @@
+no-padding-left {
+  padding-left: 0 !important;
+}
+.custom-icon {
+  padding-right: 5px; // Increase the padding to the right of the icon
+  margin-right: 5px; // Increase the margin to the right of the icon
+}
+
+.custom-label {
+  padding-left: 5px; // Increase the padding to the left of the label
+  margin-left: 5px; // Increase the margin to the left of the label
+}
+
+
+.special {
+  --background: #252525;
+  --background-activated: #303834;
+
+  --color: rgb(180, 180, 180);
+
+  --border-radius: 0;
+  --border-color: #252525;
+  --border-style: solid;
+  --border-width: 1px;
+
+  --box-shadow: 0 2px 6px 0 rgb(0, 0, 0, 0.25);
+
+  --ripple-color: rgb(20, 255, 51);
+
+  --padding-top: 10px;
+  --padding-bottom: 10px;
+}

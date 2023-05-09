@@ -1,0 +1,110 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Customers</ion-title>
+
+    <ion-buttons slot="start">
+      <ion-menu-toggle autoHide="false">
+        <ion-buttons>
+          <ion-icon name="menu" slot="icon-only" ></ion-icon>
+        </ion-buttons>
+      </ion-menu-toggle>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+ <ion-grid fixed>
+  <ion-row>
+    <ion-col size="4">
+
+      <ion-searchbar placeholder="Search"></ion-searchbar>
+
+      <ion-item lines="none"  color="primary" class="itemClass" >
+        <div class="centered-content">
+          <ion-label>Add Customer</ion-label>
+          <ion-icon name="add-outline"></ion-icon>
+        </div>
+      </ion-item>
+
+      <div class="scrollable-container1">
+        
+
+        <ion-card *ngFor="let u of users$ | async" (click)="selectedCus = u;"  [ngClass]="{'selected-card': selectedCus === u} ">
+          <ion-card-header>
+            {{u.firstName}}
+          </ion-card-header>
+          <ion-card-content>
+           
+          </ion-card-content>
+        </ion-card>
+
+      </div>
+
+    
+    </ion-col>
+    <ion-col size="8">
+
+      <div class="scrollable-container1">
+      <ion-card>
+
+        <ion-card-header>
+           Personal Info
+
+        </ion-card-header>
+        <ion-card-content>
+
+         
+
+          <ion-list lines="none">
+            
+            <ion-item>
+              <ion-label>Name: {{selectedCus.firstName}}</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>Email: {{selectedCus.email}}</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>Phone: {{selectedCus.phoneNumber}}</ion-label>
+            </ion-item>
+
+           
+          </ion-list>
+          
+          
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card>
+        <ion-card-header>
+            Measurements
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-item>
+            <ion-label>Chest: {{selectedCus.measurements.chest}} cm</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>Waist: {{selectedCus.measurements.waist}} cm</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>Hips: {{selectedCus.measurements.hips}} cm</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>Inseam: {{selectedCus.measurements.inseam}} cm</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>Sleeve Length: {{selectedCus.measurements.sleeveLength}} cm</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>Shoulder Width: {{selectedCus.measurements.shoulderWidth}} cm</ion-label>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+    </div>
+    </ion-col>
+  </ion-row>
+ </ion-grid>
+
+
+</ion-content>

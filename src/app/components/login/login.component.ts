@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { IonicModule, ModalController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { IonicModule, ModalController, NavController } from '@ionic/angular';
 import { GlobalVariablesService } from 'src/app/services/globalvars/global-variables.service';
 
 
@@ -19,6 +20,7 @@ export class LoginComponent  implements OnInit {
   enteredUser = {
     username: '',
     password:'',
+    role:''
    
   }
   
@@ -38,13 +40,11 @@ export class LoginComponent  implements OnInit {
 
   ]
 
-  constructor(public modalCtrl: ModalController, public global: GlobalVariablesService) { }
+  constructor(public modalCtrl: ModalController, public global: GlobalVariablesService,private navCtrl: NavController,private router: Router) { }
 
   ngOnInit() {}
 
-  closeModal(){
-    this.modalCtrl.dismiss(true)
-  }
+  
 
   signIn(){
     console.log('hi', this.enteredUser)
@@ -55,9 +55,18 @@ export class LoginComponent  implements OnInit {
 
         this.global.user = this.enteredUser
         this.global.loggedIn = true
-        
 
-        this.closeModal()
+        if(this.global.user.role = 'tailor'){
+          console.log('tailor', this.global.user)
+          this.navCtrl.navigateForward('tailor-dashboard');
+                 
+          }else{
+          this.navCtrl.navigateForward('home');
+           
+          }
+      
+      
+        
         
        
         console.log('done')
@@ -68,12 +77,12 @@ export class LoginComponent  implements OnInit {
 
   }
 
-  devSignIn(){
+  devSignIn( ){
     this.global.user = this.users[0]
     this.global.loggedIn = true
+    this.navCtrl.navigateForward('home');
+   
     
-
-    this.closeModal()
     
   }
 

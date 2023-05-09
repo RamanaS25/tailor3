@@ -1,0 +1,36 @@
+.card-wrapper {
+    display: flex;
+    justify-content: center;
+    min-height: 110px; /* Set the min-height to match the card height plus the bottom margin */
+  }
+  
+  .custom-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    height: 100px; /* Adjust the height as needed */
+    width: 80%; /* Adjust the width as needed */
+    padding: 10px;
+    background-color: #add8e652; /* Light blue background */
+    margin-bottom: 10px; /* Add a bottom margin */
+    transition: transform 0.1s; /* Add a transition for the transform property */
+  }
+
+  .custom-card:active {
+    transform: scale(0.95); /* Shrink the card slightly when it's clicked or tapped */
+  }
+  
+  .custom-card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .custom-card-icon {
+    font-size: 24px;
+    margin-bottom: 5px;
+  }
+  

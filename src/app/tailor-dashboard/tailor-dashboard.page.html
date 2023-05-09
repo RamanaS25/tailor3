@@ -1,0 +1,248 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Home</ion-title>
+
+    
+      
+    <ion-buttons slot="end">
+      <ion-chip *ngIf="global.loggedIn" color="primary">{{global.user.username}}</ion-chip>
+    </ion-buttons>
+
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col>
+
+        <ion-segment [(ngModel)]="segment" mode="ios">
+
+          
+          <ion-segment-button value="new">
+            <ion-label>Pending</ion-label>
+          </ion-segment-button>
+
+          <ion-segment-button value="comp">
+            <ion-label>Completed</ion-label>
+          </ion-segment-button>
+
+
+
+        </ion-segment>
+
+        <div [ngSwitch]="segment">
+          <div *ngSwitchCase="'comp'">
+
+            <ion-searchbar placeholder="Search"></ion-searchbar>
+            <ng-container *ngFor="let x of orders" >
+              <ion-card *ngIf="!x.completed" (click)="selectedOrder = x; modalOpen = !modalOpen">
+                <ion-card-header>
+
+                  <ion-card-subtitle>#{{x.idt}}</ion-card-subtitle>
+                  <ion-card-title>{{x.clothingType}}</ion-card-title>
+                 
+                </ion-card-header>
+
+                <ion-card-content>
+
+                  <ion-chip> Start Date: {{x.subDate}}</ion-chip>
+                  <ion-chip color="success"> Completed: {{x.DueDate}}</ion-chip>
+
+               
+                  
+                </ion-card-content>
+              </ion-card>
+            </ng-container>
+          </div>
+
+          <div *ngSwitchCase="'new'">
+
+            <ion-searchbar placeholder="Search"></ion-searchbar>
+            <ng-container *ngFor="let x of orders" >
+              
+              <ion-card *ngIf="x.completed" (click)="selectedOrder = x; modalOpen = !modalOpen">
+                <ion-card-header>
+
+                  <ion-card-subtitle>#{{x.idt}}</ion-card-subtitle>
+                  <ion-card-title>{{x.clothingType}}</ion-card-title>
+                 
+                </ion-card-header>
+
+                <ion-card-content>
+
+                  <ion-chip> Start Date: {{x.subDate}}</ion-chip>
+                  <ion-chip color="warning"> Date Due: {{x.DueDate}}</ion-chip>
+                  
+                  
+
+                </ion-card-content>
+              </ion-card>
+
+              <ion-item lines="none"  color="light" class="itemClass1" *ngIf="x.completed"  (click)="modalOpen1 = !modalOpen1">
+                <div class="centered-content1">
+                  <ion-label>Request Extension</ion-label>
+                  <ion-icon name="calendar-outline"></ion-icon>
+                </div>
+              </ion-item>
+            </ng-container>
+          </div>
+        </div>
+       
+        
+      </ion-col>
+      
+    </ion-row>
+  </ion-grid>
+
+
+  <ion-modal [isOpen]="modalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Order #{{selectedOrder.idt}}</ion-title>
+          <ion-buttons slot="end">
+            <ion-button  (click)="modalOpen = !modalOpen">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+       
+      
+        <ion-card>
+
+          <ion-card-header>
+             Customer 
+
+          </ion-card-header>
+          <ion-card-content>
+
+            <ion-item>
+              <ion-label position="stacked"> Customer Name</ion-label>
+               {{selectedOrder.customerName}}
+            
+            </ion-item>
+
+            <ion-list lines="none">
+              <ion-item>
+                <ion-label>Chest: {{measurements.chest}} cm</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>Waist: {{measurements.waist}} cm</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>Hips: {{measurements.hips}} cm</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>Inseam: {{measurements.inseam}} cm</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>Sleeve Length: {{measurements.sleeveLength}} cm</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>Shoulder Width: {{measurements.shoulderWidth}} cm</ion-label>
+              </ion-item>
+            </ion-list>
+            
+            
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card>
+
+          <ion-card-header>
+             Selected Model: {{selectedOrder.clothingType}}
+
+          </ion-card-header>
+          <ion-card-content>
+
+            <ion-item>
+              <ion-label position="stacked"> Fabric Type</ion-label>  {{selectedOrder.fabricUsed}}
+             </ion-item>
+
+             <ion-item>
+              <ion-label position="stacked"> Sleeve Color Left</ion-label>  Blue
+             </ion-item>
+
+             <ion-item>
+              <ion-label position="stacked"> Sleeve Color Right</ion-label>  Blue
+             </ion-item>
+            
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card>
+
+          <ion-card-header>
+             Order Details
+
+          </ion-card-header>
+          <ion-card-content>
+            
+            <ion-item>
+              <ion-label position="stacked">Date Due</ion-label>  
+               {{selectedOrder.DueDate}}
+            </ion-item>
+    
+            <ion-item>
+              <ion-label position="stacked">Date Submitted</ion-label>  
+               {{selectedOrder.subDate}}
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="stacked">Price</ion-label>  
+               Rs.{{selectedOrder.price}}
+            </ion-item>
+    
+            <ion-item *ngIf="selectedOrder.assigned">
+              <ion-label position="stacked"  >Tailor</ion-label>  
+               {{selectedOrder.tailorName}}
+            </ion-item>
+            
+          </ion-card-content>
+        </ion-card>
+
+  
+        <ion-item lines="none"  color="primary" class="itemClass" (click)="modalOpen = !modalOpen;">
+          <div class="centered-content">
+            <ion-label>Completed</ion-label>
+            <ion-icon name="checkmark-outline"></ion-icon>
+          </div>
+        </ion-item>
+      
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+
+  <ion-modal [isOpen]="modalOpen1">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Order #{{selectedOrder.idt}}</ion-title>
+          <ion-buttons slot="end">
+            <ion-button  (click)="modalOpen1 = !modalOpen1">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+       
+
+        <ng-container class="centered-content1">
+           <ion-datetime locale="en-GB" hourCycle="h12"></ion-datetime>
+        </ng-container>
+
+        <ion-item lines="none"  color="success" class="itemClass1"  (click)="modalOpen1 = !modalOpen1">
+          <div class="centered-content1">
+            <ion-label>Request</ion-label>
+            <ion-icon name="checkmark-outline"></ion-icon>
+          </div>
+        </ion-item>
+      
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+</ion-content>

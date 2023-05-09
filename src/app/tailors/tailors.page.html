@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>tailors</ion-title>
+    <ion-title>Tailors</ion-title>
 
     <ion-buttons slot="start">
       <ion-menu-toggle autoHide="false">
@@ -14,9 +14,237 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">tailors</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
+  
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col sizeLg="5" sizeMd="12" sizeSm="12" sizeXs="12">
+
+        <ion-item lines="none"  color="primary" class="itemClass" (click)="addNewUser()">
+          <div class="centered-content">
+            <ion-label>New Tailor</ion-label>
+            <ion-icon name="add-outline"></ion-icon>
+          </div>
+        </ion-item>
+        
+
+        <ion-card *ngFor="let u of users" (click)="selectedTailor = u;"  [ngClass]="{'selected-card': selectedTailor === u}">
+          <ion-card-header>
+            {{u.firstName}}
+          </ion-card-header>
+          <ion-card-content>
+              <ion-item lines="none">
+                <div class="chip-container">
+                  <ion-button color="tertiary" >Pending Orders: {{u.pOrders}}</ion-button>
+                  <ion-button color="medium"  > Completed Orders: {{u.cOrders}}</ion-button>
+                 
+                </div>
+              </ion-item>
+          </ion-card-content>
+        </ion-card>
+
+      </ion-col>
+
+      <ion-col size="7">
+
+        <!-- tailorInfo -->
+        <ion-accordion-group #accordionGroup value="first">
+        <ion-accordion value="first">
+          <ion-item slot="header" color="light">
+            <ion-label>Tailor Info</ion-label>
+          </ion-item>
+          <div class="ion-padding" slot="content">
+            <ion-card class="transparent-card">
+              <ion-card-header>
+                Tailor Info
+              </ion-card-header>
+              <ion-card-content>
+               <ion-item lines="none">Name: {{selectedTailor.firstName}} </ion-item>
+               <ion-item lines="none">Last Name:  {{selectedTailor.lastName}}</ion-item>
+               <ion-item lines="none">Pending Orders:  {{selectedTailor.pOrders}}</ion-item>
+               <ion-item lines="none">Completed Orders:  {{selectedTailor.cOrders}} </ion-item>
+              </ion-card-content>
+             </ion-card>
+          </div>
+        </ion-accordion>
+
+        <ion-accordion value="second">
+          <ion-item slot="header" color="light">
+            <ion-label>Extension Request</ion-label>
+          </ion-item>
+          <div class="ion-padding" slot="content">
+            <ng-container  >
+              <ion-card *ngIf="!pushOrder.completed" >
+                <ion-card-header>
+
+                  <ion-card-subtitle>#{{pushOrder.idt}}</ion-card-subtitle>
+                  <ion-card-title>{{pushOrder.clothingType}}</ion-card-title>
+                 
+                </ion-card-header>
+
+                <ion-card-content>
+
+                  <ion-chip> Start Date: {{pushOrder.subDate}}</ion-chip>
+                  <ion-chip color="warning"> Date Due: {{pushOrder.DueDate}}</ion-chip>
+
+                  <ion-chip color="danger"> Extension Request : 08-21-2023</ion-chip>
+
+                  <ion-item lines="none"  color="primary" class="itemClass">
+                    <div class="centered-content">
+                      <ion-label>Approve</ion-label>
+                     
+                    </div>
+                  </ion-item>
+                  
+                </ion-card-content>
+              </ion-card>
+            </ng-container>
+          </div>
+        </ion-accordion>
+
+        <ion-accordion value="third">
+          <ion-item slot="header" color="light">
+            <ion-label>Order History</ion-label>
+          </ion-item>
+          <div class="ion-padding" slot="content">
+             <!-- orders -->
+       <ion-card>
+        <ion-card-header>
+          Orders
+        </ion-card-header>
+        <ion-card-content>
+
+          <ion-segment [(ngModel)]="segment" mode="ios">
+            <ion-segment-button value="comp">
+              <ion-label>Completed</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="pend">
+              <ion-label>Pending</ion-label>
+            </ion-segment-button>
+          </ion-segment>
+
+          <div [ngSwitch]="segment">
+  
+            <div *ngSwitchCase="'comp'">
+
+              <div class="scrollable-container">
+                <ion-searchbar [placeholder]="'Search by ' + sFilter"></ion-searchbar>
+                 <ion-chip (click)="sFilter = 'Id'" color="secondary">Id</ion-chip>
+                  <ion-chip (click)="sFilter = 'Customer Name'" color="primary">Customer Name</ion-chip>
+                   <ion-chip (click)="sFilter = 'Fabric'" color="success">Fabric</ion-chip>
+                    <ion-chip (click)="sFilter = 'Clothing Type'" color="warning">Clothing Type</ion-chip>
+
+                <ng-container *ngFor="let x of orders" >
+                  <ion-card *ngIf="x.completed" (click)="selectedOrder = x; modalOpen = !modalOpen">
+                    <ion-card-header>
+  
+                      <ion-card-subtitle>#{{x.idt}}</ion-card-subtitle>
+                      <ion-card-title>{{x.clothingType}}</ion-card-title>
+                     
+                    </ion-card-header>
+  
+                    <ion-card-content>
+  
+                      <ion-chip> Start Date: {{x.subDate}}</ion-chip>
+                      <ion-chip color="success"> Date Completed: {{x.DueDate}}</ion-chip>
+                      
+                    </ion-card-content>
+                  </ion-card>
+                </ng-container>
+              </div>
+            
+             
+
+            </div>
+
+            <div *ngSwitchCase="'pend'">
+
+              <div class="scrollable-container">
+
+                <ion-searchbar [placeholder]="'Search by ' + sFilter"></ion-searchbar>
+                 <ion-chip (click)="sFilter = 'Id'" color="secondary">Id</ion-chip>
+                  <ion-chip (click)="sFilter = 'Customer Name'" color="primary">Customer Name</ion-chip>
+                   <ion-chip (click)="sFilter = 'Fabric'" color="success">Fabric</ion-chip>
+                    <ion-chip (click)="sFilter = 'Clothing Type'" color="warning">Clothing Type</ion-chip>
+
+                <ng-container *ngFor="let x of orders" >
+                  <ion-card *ngIf="!x.completed" (click)="selectedOrder = x; modalOpen = !modalOpen">
+                    <ion-card-header>
+  
+                      <ion-card-subtitle>#{{x.idt}}</ion-card-subtitle>
+                      <ion-card-title>{{x.clothingType}}</ion-card-title>
+                     
+                    </ion-card-header>
+  
+                    <ion-card-content>
+  
+                      <ion-chip> Start Date: {{x.subDate}}</ion-chip>
+                      <ion-chip color="warning"> Due Date: {{x.DueDate}}</ion-chip>
+                      
+                    </ion-card-content>
+                  </ion-card>
+                </ng-container>
+              </div>
+             
+            </div>
+          </div>
+
+        </ion-card-content>
+       </ion-card>
+          </div>
+        </ion-accordion>
+      </ion-accordion-group>
+
+
+     
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+  <ion-modal [isOpen]="modalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Order #{{selectedOrder.idt}}</ion-title>
+          <ion-buttons slot="end">
+            <ion-button  (click)="modalOpen = !modalOpen">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+       
+        <ion-item>
+          <ion-label position="stacked">Customer Name</ion-label>  
+           {{selectedOrder.customerName}}
+        
+          <ion-icon name="person-circle-outline" slot="end" color="primary"></ion-icon>
+        </ion-item>
+
+        <ion-item>
+         <ion-label position="stacked"> Fabric Type</ion-label>  {{selectedOrder.fabricUsed}}
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Clothing Type</ion-label>  
+            {{selectedOrder.clothingType}}
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Price</ion-label>  
+           Rs.{{selectedOrder.price}}
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Completed</ion-label>  
+           {{selectedOrder.completed}}
+        </ion-item>
+        
+  
+          
+      
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
 </ion-content>

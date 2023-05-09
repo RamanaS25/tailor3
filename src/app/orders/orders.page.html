@@ -1,0 +1,272 @@
+
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Orders</ion-title>
+
+    <ion-buttons slot="start">
+      <ion-menu-toggle autoHide="false">
+        <ion-buttons>
+          <ion-icon name="menu" slot="icon-only" ></ion-icon>
+        </ion-buttons>
+      </ion-menu-toggle>
+    </ion-buttons>
+
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col>
+
+        <ion-segment value="default" [(ngModel)]="segment" mode="ios">
+          <ion-segment-button   value="pOrders">
+            <ion-label>New Orders</ion-label>
+          </ion-segment-button>
+
+          <ion-segment-button value="pendingOrders">
+            <ion-label>Pending Orders</ion-label>
+          </ion-segment-button>
+          
+          <ion-segment-button value="cOrders">
+            <ion-label>Order History</ion-label>
+          </ion-segment-button>
+
+       
+        </ion-segment>
+
+        <div [ngSwitch]="segment">
+
+          <div class="scrollable-container1">
+
+            <div *ngSwitchCase="'pOrders'">
+
+              <ion-searchbar [placeholder]="'Search by ' + sFilter"></ion-searchbar>
+              <ion-chip (click)="sFilter = 'Id'" color="secondary">Id</ion-chip>
+               <ion-chip (click)="sFilter = 'Customer Name'" color="primary">Customer Name</ion-chip>
+                <ion-chip (click)="sFilter = 'Fabric'" color="success">Fabric</ion-chip>
+                 <ion-chip (click)="sFilter = 'Clothing Type'" color="warning">Clothing Type</ion-chip>
+                  <ion-chip (click)="sFilter = 'Date'" color="dark">Date</ion-chip>
+                  <div class="card-wrapper">
+                      <ion-card class="custom-card" (click)="createOrder()">
+                        <ion-card-content class="custom-card-content">
+                          <ion-icon name="add-circle" class="custom-card-icon"></ion-icon>
+                          <p>Create New Order</p>
+                        </ion-card-content>
+                      </ion-card>
+                  </div>
+            
+                  <ng-container *ngFor="let x of orders" >
+                    <ion-card *ngIf="!x.completed && !x.assigned" (click)="selectedOrder = x; modalOpen = !modalOpen; getObjectById(x.idt)">
+                      <ion-card-header>
+    
+                        <ion-card-subtitle>#{{x.idt}} {{x.customerName}}</ion-card-subtitle>
+                        <ion-card-title>{{x.clothingType}}</ion-card-title>
+                        <ion-chip color="red-chip">Tailor: un-assigned</ion-chip>
+                      </ion-card-header>
+    
+                      <ion-card-content>
+    
+                        <ion-chip> Start Date: {{x.subDate}}</ion-chip>
+                        <ion-chip color="warning"> Due Date: {{x.DueDate}}</ion-chip>
+                        
+                      </ion-card-content>
+
+                    </ion-card>
+                  </ng-container>
+              
+            </div>
+
+            <div *ngSwitchCase="'cOrders'">
+
+              <ion-searchbar [placeholder]="'Search by ' + sFilter"></ion-searchbar>
+              <ion-chip (click)="sFilter = 'Id'" color="secondary">Id</ion-chip>
+               <ion-chip (click)="sFilter = 'Customer Name'" color="primary">Customer Name</ion-chip>
+                <ion-chip (click)="sFilter = 'Fabric'" color="success">Fabric</ion-chip>
+                 <ion-chip (click)="sFilter = 'Clothing Type'" color="warning">Clothing Type</ion-chip>
+                  <ion-chip (click)="sFilter = 'Date'" color="tertiary">Date</ion-chip>
+                  <ion-chip (click)="sFilter = 'Tailor Name'" color="medium">Tailor Name</ion-chip>
+
+              <ng-container *ngFor="let x of orders" >
+                <ion-card *ngIf="x.completed" (click)="selectedOrder = x; modalOpen = !modalOpen; getObjectById(x.idt)">
+                  <ion-card-header>
+
+                    <ion-card-subtitle>#{{x.idt}} {{x.customerName}}</ion-card-subtitle>
+                    <ion-card-title>{{x.clothingType}}</ion-card-title>
+                    <ion-note>Tailor Name: {{x.tailorName}}</ion-note>
+                  
+                  </ion-card-header>
+
+                  <ion-card-content>
+
+                    <ion-chip> Start Date: {{x.subDate}}</ion-chip>
+                    <ion-chip color="success"> Completed: {{x.DueDate}}</ion-chip>
+                    
+                  </ion-card-content>
+                </ion-card>
+              </ng-container>
+            </div>
+
+            <div *ngSwitchCase="'pendingOrders'">
+              <ion-searchbar [placeholder]="'Search by ' + sFilter"></ion-searchbar>
+              <ion-chip (click)="sFilter = 'Id'" color="secondary">Id</ion-chip>
+               <ion-chip (click)="sFilter = 'Customer Name'" color="primary">Customer Name</ion-chip>
+                <ion-chip (click)="sFilter = 'Fabric'" color="success">Fabric</ion-chip>
+                 <ion-chip (click)="sFilter = 'Clothing Type'" color="warning">Clothing Type</ion-chip>
+                  <ion-chip (click)="sFilter = 'Date'" color="tertiary">Date</ion-chip>
+                  <ion-chip (click)="sFilter = 'Tailor Name'" color="medium">Tailor Name</ion-chip>
+
+              <ng-container *ngFor="let x of orders" >
+                <ion-card *ngIf="!x.completed && x.assigned" (click)="selectedOrder = x; modalOpen = !modalOpen; getObjectById(x.idt)">
+                  <ion-card-header>
+
+                    <ion-card-subtitle>#{{x.idt}} {{x.customerName}}</ion-card-subtitle>
+                    <ion-card-title>{{x.clothingType}}</ion-card-title>
+                    <ion-note>Tailor Name: {{x.tailorName}}</ion-note>
+                  
+                  </ion-card-header>
+
+                  <ion-card-content>
+
+                    <ion-chip> Start Date: {{x.subDate}}</ion-chip>
+                    <ion-chip color="success"> Due Date: {{x.DueDate}}</ion-chip>
+                    
+                  </ion-card-content>
+                </ion-card>
+              </ng-container>
+            </div>
+
+          </div>
+
+        </div>
+
+
+      </ion-col>
+  
+    </ion-row>
+  </ion-grid>
+
+  <ion-modal [isOpen]="modalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Order #{{selectedOrder.idt}}</ion-title>
+          <ion-buttons slot="end">
+            <ion-button  (click)="modalOpen = !modalOpen">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+
+        <ion-card>
+
+          <ion-card-header>
+             Customer 
+
+          </ion-card-header>
+          <ion-card-content>
+
+            <ion-item>
+              <ion-label position="stacked"> Customer Name</ion-label>
+               {{selectedOrder.customerName}}
+            
+            </ion-item>
+
+            <ion-list lines="none">
+              <ion-item>
+                <ion-label>Chest: {{measurements.chest}} cm</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>Waist: {{measurements.waist}} cm</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>Hips: {{measurements.hips}} cm</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>Inseam: {{measurements.inseam}} cm</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>Sleeve Length: {{measurements.sleeveLength}} cm</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>Shoulder Width: {{measurements.shoulderWidth}} cm</ion-label>
+              </ion-item>
+            </ion-list>
+            
+            
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card>
+
+          <ion-card-header>
+             Selected Model: {{selectedOrder.clothingType}}
+
+          </ion-card-header>
+          <ion-card-content>
+
+            <ion-item>
+              <ion-label position="stacked"> Fabric Type</ion-label>  {{selectedOrder.fabricUsed}}
+             </ion-item>
+
+             <ion-item>
+              <ion-label position="stacked"> Sleeve Color Left</ion-label>  Blue
+             </ion-item>
+
+             <ion-item>
+              <ion-label position="stacked"> Sleeve Color Right</ion-label>  Blue
+             </ion-item>
+            
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card>
+
+          <ion-card-header>
+             Order Details
+
+          </ion-card-header>
+          <ion-card-content>
+            
+            <ion-item>
+              <ion-label position="stacked">Date Due</ion-label>  
+               {{selectedOrder.DueDate}}
+            </ion-item>
+    
+            <ion-item>
+              <ion-label position="stacked">Date Submitted</ion-label>  
+               {{selectedOrder.subDate}}
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="stacked">Price</ion-label>  
+               Rs.{{selectedOrder.price}}
+            </ion-item>
+    
+            <ion-item *ngIf="selectedOrder.assigned">
+              <ion-label position="stacked"  >Tailor</ion-label>  
+               {{selectedOrder.tailorName}}
+            </ion-item>
+            
+          </ion-card-content>
+        </ion-card>
+
+      
+
+      <ion-item lines="none"  color="primary" class="itemClass" *ngIf="!selectedOrder.completed && !selectedOrder.assigned" (click)="modalOpen = !modalOpen; assignToTailor(selectedOrder)">
+        <div class="centered-content">
+          <ion-label>Assign To Tailor</ion-label>
+          <ion-icon name="arrow-forward"></ion-icon>
+        </div>
+      </ion-item>
+          
+      
+      
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+</ion-content>

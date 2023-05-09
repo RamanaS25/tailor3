@@ -1,0 +1,23 @@
+.itemClass1:active {
+    transform: scale(0.95); /* Shrink the card slightly when it's clicked or tapped */
+    
+  }
+
+  .itemClass1{
+    scale: 0.95;
+    border-radius: 10px;
+    transition: transform 0.1s;
+
+  }
+  
+
+  .centered-content1 {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    
+  }
+
+  
