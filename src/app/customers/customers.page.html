@@ -5,7 +5,7 @@
     <ion-buttons slot="start">
       <ion-menu-toggle autoHide="false">
         <ion-buttons>
-          <ion-icon name="menu" slot="icon-only" ></ion-icon>
+          <ion-icon name="menu" slot="icon-only"></ion-icon>
         </ion-buttons>
       </ion-menu-toggle>
     </ion-buttons>
@@ -13,98 +13,134 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="4">
+        <ion-searchbar placeholder="Search"></ion-searchbar>
 
- <ion-grid fixed>
-  <ion-row>
-    <ion-col size="4">
+        <ion-item lines="none" color="primary" (click)="isModalOpen = true" class="itemClass">
+          <div class="centered-content">
+            <ion-label>Add Customer</ion-label>
+            <ion-icon name="add-outline"></ion-icon>
+          </div>
+        </ion-item>
 
-      <ion-searchbar placeholder="Search"></ion-searchbar>
-
-      <ion-item lines="none"  color="primary" class="itemClass" >
-        <div class="centered-content">
-          <ion-label>Add Customer</ion-label>
-          <ion-icon name="add-outline"></ion-icon>
+        <div class="scrollable-container1">
+          <ion-card *ngFor="let u of users$ | async" (click)="selectedCus = u;"
+            [ngClass]="{'selected-card': selectedCus === u} ">
+            <ion-card-header> {{u.firstName}} </ion-card-header>
+            <ion-card-content> </ion-card-content>
+          </ion-card>
         </div>
-      </ion-item>
+      </ion-col>
+      <ion-col size="8">
+        <div class="scrollable-container1">
+          <ion-card>
+            <ion-card-header> Personal Info </ion-card-header>
+            <ion-card-content>
+              <ion-list lines="none">
+                <ion-item>
+                  <ion-label>Name: {{selectedCus.firstName}}</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Email: {{selectedCus.email}}</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Phone: {{selectedCus.phoneNumber}}</ion-label>
+                </ion-item>
+              </ion-list>
+            </ion-card-content>
+          </ion-card>
 
-      <div class="scrollable-container1">
-        
+          <ion-card>
+            <ion-card-header> Measurements </ion-card-header>
+            <ion-card-content>
+              <ion-item>
+                <ion-label>Chest: {{selectedCus.measurements.chest}} cm</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>Waist: {{selectedCus.measurements.waist}} cm</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>Hips: {{selectedCus.measurements.hips}} cm</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>Inseam: {{selectedCus.measurements.inseam}} cm</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>Sleeve Length: {{selectedCus.measurements.sleeveLength}} cm</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>Shoulder Width: {{selectedCus.measurements.shoulderWidth}} cm</ion-label>
+              </ion-item>
+            </ion-card-content>
+          </ion-card>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-        <ion-card *ngFor="let u of users$ | async" (click)="selectedCus = u;"  [ngClass]="{'selected-card': selectedCus === u} ">
-          <ion-card-header>
-            {{u.firstName}}
-          </ion-card-header>
-          <ion-card-content>
-           
-          </ion-card-content>
-        </ion-card>
+  <ion-modal [isOpen]="isModalOpen" (ionModalDidDismiss) ="isModalOpen = false">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Add Customer</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="isModalOpen = false" color="danger">Cancel</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-list style="border-radius: 10px;">
+          <ion-list-header>
+            Personal Details
+          </ion-list-header>
+          <ion-item>
+            <ion-input [(ngModel)]="customer.firstName">First Name: </ion-input>
+          </ion-item>
 
-      </div>
+          <ion-item>
+            <ion-input [(ngModel)]="customer.lastName">Last Name: </ion-input>
+          </ion-item>
 
-    
-    </ion-col>
-    <ion-col size="8">
+          <ion-item>
+            <ion-input label="Email: " [(ngModel)]="customer.email"></ion-input>
+          </ion-item>
 
-      <div class="scrollable-container1">
-      <ion-card>
+          <ion-item>
+            <ion-input [(ngModel)]="customer.phoneNumber">Phone Number: </ion-input>
+          </ion-item>
 
-        <ion-card-header>
-           Personal Info
-
-        </ion-card-header>
-        <ion-card-content>
-
-         
-
-          <ion-list lines="none">
-            
-            <ion-item>
-              <ion-label>Name: {{selectedCus.firstName}}</ion-label>
-            </ion-item>
-            <ion-item>
-              <ion-label>Email: {{selectedCus.email}}</ion-label>
-            </ion-item>
-            <ion-item>
-              <ion-label>Phone: {{selectedCus.phoneNumber}}</ion-label>
-            </ion-item>
-
-           
-          </ion-list>
-          
-          
-        </ion-card-content>
-      </ion-card>
-
-      <ion-card>
-        <ion-card-header>
+          <ion-list-header>
             Measurements
-        </ion-card-header>
+          </ion-list-header>
 
-        <ion-card-content>
           <ion-item>
-            <ion-label>Chest: {{selectedCus.measurements.chest}} cm</ion-label>
+            <ion-input [(ngModel)]="customer.measurements.chest">Chest: </ion-input>
           </ion-item>
-          <ion-item>
-            <ion-label>Waist: {{selectedCus.measurements.waist}} cm</ion-label>
-          </ion-item>
-          <ion-item>
-            <ion-label>Hips: {{selectedCus.measurements.hips}} cm</ion-label>
-          </ion-item>
-          <ion-item>
-            <ion-label>Inseam: {{selectedCus.measurements.inseam}} cm</ion-label>
-          </ion-item>
-          <ion-item>
-            <ion-label>Sleeve Length: {{selectedCus.measurements.sleeveLength}} cm</ion-label>
-          </ion-item>
-          <ion-item>
-            <ion-label>Shoulder Width: {{selectedCus.measurements.shoulderWidth}} cm</ion-label>
-          </ion-item>
-        </ion-card-content>
-      </ion-card>
-    </div>
-    </ion-col>
-  </ion-row>
- </ion-grid>
 
+          <ion-item>
+            <ion-input [(ngModel)]="customer.measurements.waist">Waist: </ion-input>
+          </ion-item>
 
+          <ion-item>
+            <ion-input [(ngModel)]="customer.measurements.hips">Hips: </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input [(ngModel)]="customer.measurements.inseam">Inseam: </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input [(ngModel)]="customer.measurements.sleeveLength">Sleeve Length: </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-input [(ngModel)]="customer.measurements.shoulderWidth">Shoulder Width: </ion-input>
+          </ion-item>
+        </ion-list>
+        <ion-button expand="block" (click)="addnewCus()"> Save Details </ion-button>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>
