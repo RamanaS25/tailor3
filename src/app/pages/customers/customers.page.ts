@@ -2,8 +2,8 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { ApiService } from '../services/apiServices/api-service.service';
-import { Customer } from '../services/apiServices/api-service.service';
+import { ApiService } from '../../services/apiServices/api-service.service';
+import { Customer } from '../../services/apiServices/api-service.service';
 import { Observable } from 'rxjs';
 import { Subject } from 'rxjs';
 import { filter, map, takeUntil } from 'rxjs/operators';
@@ -34,7 +34,7 @@ export class CustomersPage implements OnInit {
  
 
   ngOnInit() {
-    this.users$ = this.service.loadCustomers()
+    this.users$ = this.service.loadUsers()
 
    
     

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ModalController, NavController } from '@ionic/angular';
-import { LoginComponent } from '../components/login/login.component';
-import { GlobalVariablesService } from '../services/globalvars/global-variables.service';
+import { LoginComponent } from '../../components/login/login.component';
+import { GlobalVariablesService } from '../../services/globalvars/global-variables.service';
 import { Router } from '@angular/router';
 
 

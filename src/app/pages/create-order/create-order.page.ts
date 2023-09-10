@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule, NavController } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { ApiService } from '../services/apiServices/api-service.service';
+import { ApiService } from '../../services/apiServices/api-service.service';
 
 
 
@@ -42,7 +42,7 @@ export class CreateOrderPage implements AfterViewInit {
     private navCtrl: NavController,
    ){
 
-    this.customers = service.loadCustomers()
+    this.customers = service.loadUsers()
     console.log(this.customers)
   }
 

@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { faker } from '@faker-js/faker';
-import { slicePipe } from '../pipes/slice-pipe.module';
-import { ApiService } from '../services/apiServices/api-service.service';
+import { slicePipe } from '../../pipes/slice-pipe.module';
+import { ApiService, Customer } from '../../services/apiServices/api-service.service';
 import { Observable } from 'rxjs';
 
 
@@ -59,6 +59,8 @@ export class TailorsPage implements OnInit {
     'chiffon'
   ]
 
+  customer: Customer
+
   selectedTailor: User
   segment = 'comp'  
 
@@ -68,6 +70,7 @@ export class TailorsPage implements OnInit {
    pushOrder: any
 
   constructor( public service: ApiService) { 
+
     this.service.users$.subscribe(users => {
       this.users = users;
     });

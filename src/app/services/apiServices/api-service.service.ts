@@ -76,6 +76,8 @@ export class ApiService {
   
  private _users$ = new BehaviorSubject<User[]>([]);
 
+ private _customers$ = new BehaviorSubject<Customer[]>([])
+
 
 
   constructor() {
@@ -174,6 +176,10 @@ export class ApiService {
   //   return this._users
   // }
 
+  loadCus() {
+    this._customers$.next(Array.from({ length: 4 }, () => this.generateRandomCustomer()));
+  }
+
   loadUsers() {
     this._users$.next(Array.from({ length: 4 }, () => this.generateRandomUser()));
   }
@@ -183,10 +189,10 @@ export class ApiService {
   //   return customers
   // }
 
-  loadCustomers(): Observable<Customer[]> {
-    let customers = Array.from({ length: 10 }, () => this.generateRandomCustomer());
-    return of(customers);
-  }
+  // loadCustomers(): Observable<Customer[]> {
+  //   let customers = Array.from({ length: 10 }, () => this.generateRandomCustomer());
+  //   return of(customers);
+  // }
 
   loadStock(){
     let stock = Array.from({ length: 10 }, () => this.generateStock());
@@ -204,10 +210,21 @@ export class ApiService {
     return this._users$.asObservable();
   }
 
+  get customers$() {
+    return this._customers$.asObservable();
+    
+  }
+
   addUser(user: User) {
   const currentUsers = this._users$.getValue();
   currentUsers.push(user);
   this._users$.next(currentUsers);
+}
+
+addCus(customer: Customer) {
+  const currentCustomers = this._customers$.getValue(); // taking a snapshot of the stream and assigning it to a var
+  currentCustomers.push(customer); // pusing our new item to the snapshot
+  this._customers$.next(currentCustomers); // we are then inserting the snapshot with the new data into the stream, if other changes were going on they wont be overwritten
 }
 
   

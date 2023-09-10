@@ -8,27 +8,27 @@ export const routes: Routes = [
   },
   {
     path: 'tailors',
-    loadComponent: () => import('./tailors/tailors.page').then( m => m.TailorsPage)
+    loadComponent: () => import('./pages/tailors/tailors.page').then( m => m.TailorsPage)
   },
   {
     path: 'home',
-    loadComponent: () => import('./home/home.page').then( m => m.HomePage)
+    loadComponent: () => import('./pages/home/home.page').then( m => m.HomePage)
   },
   {
     path: 'orders',
-    loadComponent: () => import('./orders/orders.page').then( m => m.OrdersPage)
+    loadComponent: () => import('./pages/orders/orders.page').then( m => m.OrdersPage)
   },
   {
     path: 'orders/create-order',
-    loadComponent: () => import('./create-order/create-order.page').then( m => m.CreateOrderPage)
+    loadComponent: () => import('./pages/create-order/create-order.page').then( m => m.CreateOrderPage)
   },
   {
     path: 'stock',
-    loadComponent: () => import('./stock/stock.page').then( m => m.StockPage)
+    loadComponent: () => import('./pages/stock/stock.page').then( m => m.StockPage)
   },
   {
     path: 'orders/assign',
-    loadComponent: () => import('./assign-to-tailor/assign-to-tailor.page').then( m => m.AssignToTailorPage)
+    loadComponent: () => import('./pages/assign-to-tailor/assign-to-tailor.page').then( m => m.AssignToTailorPage)
   },
   {
     path: 'login',
@@ -36,12 +36,17 @@ export const routes: Routes = [
   },
   {
     path: 'tailor-dashboard',
-    loadComponent: () => import('./tailor-dashboard/tailor-dashboard.page').then( m => m.TailorDashboardPage)
+    loadComponent: () => import('./pages/tailor-dashboard/tailor-dashboard.page').then( m => m.TailorDashboardPage)
   },
   {
     path: 'customers',
-    loadComponent: () => import('./customers/customers.page').then( m => m.CustomersPage)
+    loadComponent: () => import('./pages/customers/customers.page').then( m => m.CustomersPage)
   },
+  {
+    path: 'customer-dashboard',
+    loadComponent: () => import('./pages/cus/customer-dashboard/customer-dashboard.page').then( m => m.CustomerDashboardPage)
+  },
+
 
 
 ];

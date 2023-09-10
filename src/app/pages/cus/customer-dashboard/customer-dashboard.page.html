@@ -1,0 +1,101 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+  <ion-buttons slot="end">
+    <ion-button >
+      <ion-icon name="chevron-back" (click)="genderSelected = false; clothingSelectedBool = false" *ngIf="genderSelected && clothingSelected">
+        
+      </ion-icon>
+    </ion-button>
+  </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-grid fixed="true" *ngIf="!genderSelected">
+    <ion-row>
+      <ion-col>
+        <ion-card class="card-styled card-man" (click)="genderSelected = true">
+            <ion-card-content class="card-content-styled">
+                Man
+            </ion-card-content>
+        </ion-card>
+    </ion-col>
+    
+    <ion-col>
+        <ion-card class="card-styled card-woman" (click)="genderSelected = true">
+            <ion-card-content class="card-content-styled">
+                Woman
+            </ion-card-content>
+        </ion-card>
+    </ion-col>
+    
+    <ion-col>
+        <ion-card class="card-styled card-child" (click)="genderSelected = true">
+            <ion-card-content class="card-content-styled">
+                Child
+            </ion-card-content>
+        </ion-card>
+    </ion-col>
+    
+    </ion-row>
+  </ion-grid>
+
+  <div *ngIf="genderSelected">
+    <ion-grid fixed="true">
+      <ion-row class="scrollable-containerv" [ngClass]="{'clothing-selected': clothingSelectedBool}">
+
+        <ion-col *ngFor="let clothing of clothingItems">
+            <ion-card class="card-clothe"
+                      [ngClass]="{
+                         'card-dress': clothing.type === 'dresses',
+                         'card-skirt': clothing.type === 'skirts',
+                         'card-pants': clothing.type === 'pants',
+                         'selected-cloth': clothingSelected === clothing.type
+                      }"
+                      (click)="selectClothing(clothing.type); clothingSelectedBool = true">
+                <ion-card-content class="clothing-content-styled">
+                    {{ clothing.name }}
+                </ion-card-content>
+            </ion-card>
+        </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="clothingSelectedBool">
+      <ion-col> 
+
+        <swiper [effect]="'cards'" [grabCursor]="true" >
+
+          <ng-template swiperSlide *ngFor="let x of[1,2,3,4,5,6]">
+      
+      
+            <ion-card style="height:500px">
+              <ion-card-content>
+
+                <ion-chip color="danger">
+                  hi
+                </ion-chip>
+                {{x}}
+
+                <img src="../../assets/img/1.JPG" alt="">
+              </ion-card-content>
+            </ion-card>
+
+
+          </ng-template>
+          
+          
+      
+         
+        </swiper>
+
+      </ion-col> 
+    </ion-row>
+    
+    </ion-grid>
+  </div> 
+
+
+
+
+</ion-content>

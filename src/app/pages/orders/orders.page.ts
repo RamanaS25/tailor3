@@ -5,7 +5,7 @@ import { Router, NavigationExtras } from '@angular/router';
 
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { ApiService } from '../services/apiServices/api-service.service';
+import { ApiService } from '../../services/apiServices/api-service.service';
 import { NavController } from '@ionic/angular';
 import { link } from 'fs';
 
@@ -39,7 +39,7 @@ export class OrdersPage implements OnInit {
 
   constructor( public service: ApiService,private navCtrl: NavController,private router: Router) { 
     this.orders = this.service.loadOrders()
-    this.customers = this.service.loadCustomers()
+    this.customers = this.service.loadUsers()
     console.log(this.orders,this.customers)
   }
 

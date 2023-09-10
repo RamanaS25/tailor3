@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { ApiService } from '../services/apiServices/api-service.service';
-import { GlobalVariablesService } from '../services/globalvars/global-variables.service';
+import { ApiService } from '../../services/apiServices/api-service.service';
+import { GlobalVariablesService } from '../../services/globalvars/global-variables.service';
 
 @Component({
   selector: 'app-tailor-dashboard',

@@ -11,38 +11,38 @@
           <ion-card class="cardStyle">
                   
 
-            <ion-card-content>
-              <ion-item mode="md">
-                <ion-label position="floating">
-                  User Name
-               </ion-label>
+<ion-card-content>
+  <ion-item mode="md">
+    <ion-label position="floating">
+      User Name
+    </ion-label>
+
+    <ion-input  [(ngModel)]="enteredUser.username">
       
-                <ion-input  [(ngModel)]="enteredUser.username">
-                  
-                </ion-input>
-               </ion-item>
+    </ion-input>
+    </ion-item>
+
+
+      <ion-item mode="md">
+
+      <ion-label position="floating" >
+          Password
+      </ion-label>
       
+      <ion-input required="true"  [(ngModel)]="enteredUser.password">
       
-                  <ion-item mode="md">
+      </ion-input>
       
-                  <ion-label position="floating" >
-                      Password
-                  </ion-label>
-                  
-                  <ion-input required="true"  [(ngModel)]="enteredUser.password">
-                  
-                  </ion-input>
-                  
-                  </ion-item>
-      
-                  <ion-button expand="block" color="primary" (click)="signIn()">
-                    Sign In
-                  </ion-button>
-      
-                  <ion-button expand="block" color="primary" (click)="devSignIn()">
-                    Dev Sign In
-                  </ion-button>
-            </ion-card-content>
+      </ion-item>
+
+      <ion-button expand="block" color="primary" (click)="signIn()">
+        Sign In
+      </ion-button>
+
+      <ion-button expand="block" color="primary" (click)="devSignIn()">
+        Dev Sign In
+      </ion-button>
+</ion-card-content>
 
             
 

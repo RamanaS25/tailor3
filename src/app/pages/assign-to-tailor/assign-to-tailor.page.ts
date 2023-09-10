@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, NavController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService } from '../services/apiServices/api-service.service';
+import { ApiService } from '../../services/apiServices/api-service.service';
 
 @Component({
   selector: 'app-assign-to-tailor',
