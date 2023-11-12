@@ -45,7 +45,13 @@ export const routes: Routes = [
   {
     path: 'customer-dashboard',
     loadComponent: () => import('./pages/cus/customer-dashboard/customer-dashboard.page').then( m => m.CustomerDashboardPage)
+  },  {
+    path: 'final-order',
+    loadComponent: () => import('./pages/final-order/final-order.page').then( m => m.FinalOrderPage)
   },
+
+  
+
 
 
 

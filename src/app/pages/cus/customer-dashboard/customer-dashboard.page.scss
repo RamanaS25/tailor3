@@ -1,105 +1,441 @@
-@import "swiper/css";
-@import "swiper/css/effect-cards";
 
-.card-styled {
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease;
+
+
+
+/* ANIMATIONS */
+@keyframes floatIn {
+  from {
+      opacity: 0;
+      transform: translateY(30px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
 }
 
-.card-styled:hover {
-    transform: translateY(-5px);  /* Gives a little lift effect on hover */
+@keyframes unveilGradient {
+  0% {
+      top: 0;
+      bottom: 100%;
+  }
+  100% {
+      top: 0;
+      bottom: 0;
+  }
 }
 
-.card-content-styled {
-    display: flex;
-    align-items: center;
-    justify-content: center;  /* Centers the text horizontally and vertically */
-    height: 100px;  /* Sets a fixed height for the card content */
-    font-size: 1.2em;
+
+
+
+
+
+/* CENTER ALIGNMENT STYLES */
+.initial_gender_selection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; 
+}
+
+.selection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  
+  ion-grid {
+      width: 100%;  // This can be adjusted to fit your needs
+      max-width: 950px; // This can also be adjusted
+      --ion-grid-row-padding: 10px;  
+  }
+}
+
+.center-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; // For vertical centering
+  align-items: center;     // For horizontal centering
+  text-align: center;      // For centering inline elements or text
+}
+
+/* GENDER SELECTION STYLES */
+
+.cloth-card {
+  opacity: 0; /* initially hidden */
+  animation: floatIn 0.5s forwards;
+}
+.BoyGirl {
+  /* ... existing styles ... */
+  opacity: 0; /* initially hidden */
+  animation: floatIn 0.5s forwards;
+}
+
+
+
+
+.gender {
+  width: 500px;
+  height: 125px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+}
+
+
+
+.cloth_options {
+  /* ... existing styles ... */
+  position: relative; /* This allows absolute positioning of child elements relative to this parent */
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 229, 180, 0.5); /* This is a black tint, adjust as needed */
+  opacity: 0; /* Initially, we want the overlay to be invisible */
+  transition: opacity 0.5s 0.5s; /* A half-second transition on opacity, with a half-second delay */
+  animation: fadeIn 0.5s forwards;
+  animation-delay: 1.2s;
+  animation: fadeIn 0.5s forwards;
+  opacity: 0;
+  z-index: 1;
+}
+
+.foggy-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0; 
+  transition: opacity 0.5s 0.5s; /* Similar to the overlay, we control the display using opacity */
+  animation: fadeIn 0.5s forwards;
+  animation-delay: 1.2s;
+  animation: fadeIn 0.5s forwards;
+    opacity: 0; 
+    font-size: 24px; /* Adjust this value to your preference */
     font-weight: bold;
-    color: #555;
+    z-index: 2;
+    color:Black;
 }
 
-.card-styled:active {
-    transform: scale(0.95); /* Shrink effect on click */
+.cloth_options {
+  width: 500px;
+  height: 175px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+
+.cloth_options img {
+  width: 100%;       /* Take full width */
+  height: 100%;      /* Take full height */
+  object-fit: cover; /* This will ensure the image covers the whole card but still maintains its aspect ratio. */
+  display: block;  
+}
+
+.grid-container {
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    min-height: 100vh;
     
+    ion-grid {
+        width: 100%;  // This can be adjusted to fit your needs
+        max-width: 1700px; // This can also be adjusted
+        --ion-grid-row-padding: 10px;  
+    }
 }
 
-/* Optional: You can style specific cards differently based on their content */
-.card-man {
-    background-color: #c8eeff;  /* Light blue */
+.back-button {
+  position: absolute;
+  top: 10px;        // Adjust the top position as needed
+  left: 10px;       // Adjust the left position as needed
+  z-index: 100;     // To ensure it's above other content
+  width: 50px;
+  height: 35px;
+  border-radius: 5px;
+  background-color: rgb(255, 229, 180, 0.7);
+  
 }
 
-.card-woman {
-    background-color: #ffd7d7;  /* Light pink */
+.BoyGirl  {
+  width: 400px;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-bottom: 40px;
+  padding: 0; 
 }
 
-.card-child {
-    background-color: #fff4d1;  /* Light yellow */
+.BoyGirl img {       /* Target the image inside the card */
+  width: 100%;       /* Take full width */
+  height: 100%;      /* Take full height */
+  object-fit: cover; /* This will ensure the image covers the whole card but still maintains its aspect ratio. */
+  display: block;    /* Removes any line-height related gaps below the image */
+}
+
+.back {
+  color:black;
+}
+
+.cloth-card {
+  transition: transform 0.5s, opacity 0.5s;
+}
+
+.foggy-text {
+  transition: opacity 0.5s;
+}
+
+.foggy-text.hide {
+  opacity: 0;
 }
 
 
-.card-clothe {
+
+.swiper-wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+
+  .middle-box {
+    display: flex;
+    width: 1000px;   // Change as needed for desired width
+    height: 80vh; // Change as needed for desired height
+    flex-direction: row;
+    align-items: center;
+    border-radius: 18px;
+    background-color: rgb(255, 228, 179, 0.9) ; 
+    animation: floatIn 1s forwards;
+    background: 
+    url('/assets/background/Tree1.svg') center/cover no-repeat,
+    linear-gradient(to top, rgba(255, 228, 179, 0.9), #31312d);
+
+  
+    
+
+    .TheActualSwiper{
+      width: 400px;  // Adjust as necessary
+      height: 550px; // Adjust as necessary
+      margin-left: 60px; 
+      animation: floatIn 1s forwards;
+      position: relative;
+      z-index: 2;
+      margin-bottom: 60px;
+      
+    }
+
+    
+
+  }
+  
+
+  ::ng-deep .swiper-slide  {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 18px;
+      font-size: 22px;
+      font-weight: bold;
+      color: black;
+      background-color: white;
+      width: 80%; 
+      
+  }
+}
+
+.custom-button {
+  padding: 10px 20px; // Button padding
+  border-radius: 5px;
+  background-color: rgb(186, 146, 46); // Button color
+  cursor: pointer;
+  height: 50px;
+  width:300px;
+  margin-left: 120px;
+  font-weight: bold;
+  font-size: 24px;
+  margin-top: 40px
+  
+  
+}
+
+.button-container {
+  position: fixed; /* Keep the button container fixed */
+  z-index: 1;
+  /* Set the button's position relative to the viewport */
+  bottom: 40px; /* Adjust as needed */
+}
+
+
+
+.ModelDetails {
+  background-color: #131312;  
+  width: 450px;
+  height: 700px;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 40px;
+  color: rgba(216, 182, 119);
+  margin-left: 525px;
+  position: fixed; /* Keep the button container fixed */
+  z-index: 1;
+}
+
+
+.main-container {
+  display: flex; // Create a flex container.
+  justify-content: center; // Center align items.
+  align-items: center;
+  height: 100vh; // Take up the full viewport height.
+  overflow: hidden;
+  
+  
+}
+
+.cards-container {
+  display: flex; // To layout cards in a vertical stack.
+  flex-direction: column ;
+  gap: 50px; // Spacing between cards.
+  margin: 0 50px;
+  
+  .card {
+    position: relative;
+    background: linear-gradient(to top, rgba(255, 228, 179, 0.9), #31312d);
     border-radius: 10px;
-    width: 150px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s;
-    padding: 20px;  /* Adding padding to make them appear bulkier initially */
-}
-
-/* When any clothing is selected, all cards get skinnier */
-.clothing-selected .card-clothe {
-    padding: 5px;
-    opacity: 0.5;
-}
-
-/* Specific colors for each clothing type */
-.card-dress {
-    background-color: #c8eeff;  /* Light blue */
-}
-
-.card-skirt {
-    background-color: #ffd7d7;  /* Light pink */
-}
-
-.card-pants {
-    background-color: #fff4d1;  /* Light yellow */
-}
-
-/* When a specific clothing type is selected, it retains its color */
-.clothing-selected .card-dress.selected-cloth {
-    opacity: 1;
-}
-
-.clothing-selected .card-skirt.selected-cloth {
-    opacity: 1;
-}
-
-.clothing-selected .card-pants.selected-cloth {
-    opacity: 1;
-}
-
-.clothing-content-styled {
+    width: 300px;
+    height: 150px;
+    animation: fadeIn 1s ease-out forwards;
+  }
+  .card-content {
+    z-index: 0;  /* Add this line */
+    padding: 15px;
     display: flex;
     align-items: center;
-    justify-content: center;  /* Centers the text horizontally and vertically */
-    height: 80px;  /* Sets a fixed height for the card content */
-    font-size: 1.2em;
-    font-weight: bold;
-    color: #555;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    position: relative;  /* Add this line */
+    z-index: 1;  /* Change this to 1 */
+  }
+
+  .card.selected::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(186, 146, 46);
+    border-radius: 10px;
+    z-index: -1;
+  }
 }
 
-/* When any clothing is selected, the card contents get skinnier */
-.clothing-selected .clothing-content-styled {
-    height: 20px;  /* Reduced height for the card content */
+.cards-container:first-child {
+  margin-left: 75px; // Adjust this value as per your preference
 }
 
-.scrollable-container {
-    display: flex;
-    overflow-x: auto; /* Allow horizontal scrolling */
-    white-space: nowrap; /* Prevent wrapping to next line */
-    flex-wrap: nowrap; /* Prevent flex items from wrapping */
+.cards-container:last-child {
+  margin-right: 75px; // Adjust this value as per your preference
 }
 
 
+
+.DisplayedModelName {
+  position: absolute;
+  top: 30px;      /* adjust as needed */
+  left: 50px;     /* adjust as needed */
+  font-size: 60px;
+}
+
+/* Styles for DisplayedText */
+.DisplayedText {
+  position: absolute;
+  top: 175px;   /* adjust as needed */
+  left: 50px;    /* adjust as needed */
+  font-size: 30px;
+}
+
+.DisplayedPrice {
+  position: absolute;
+  top: 210px;   /* adjust as needed */
+  left: 50px;
+  font-size: 80px;
+  color:  #50C878;
+  background: url('../../../../assets/fonts/Emerald.jpg') no-repeat;
+  -webkit-background-clip: text;
+  color: transparent;
+  display: inline-block; /* or block, as required */
+  background-size: cover;
+}
+
+.gallery {
+  position: absolute;
+  width: 300px;
+  height: 200px;
+  background-color: rgb(184, 164, 132);
+  bottom: 90px;
+  left: 75px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+
+.overlay2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgb(184, 164, 132, 0.1); /* This is a black tint, adjust as needed */
+  z-index: 1;
+}
+
+
+.ad {
+  position: absolute;
+  bottom: 300px;
+  left: 75px;
+  font-size: 20px;
+}
+
+.SwiperModal {
+  --height: 80vh;
+  --width: 80%;
+}
+
+.gay {
+  width: 500px;
+  height: 300px;  
+  background-color:#50C878;
+}
+
+.gay2 {
+  width: 600px;
+  height: 300px;  
+}

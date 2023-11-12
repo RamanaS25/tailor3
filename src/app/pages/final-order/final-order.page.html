@@ -1,0 +1,95 @@
+<ion-content class="custom-background">
+
+  <button (click)="navigateToCustomerDashboard()" class="back-button">
+    <ion-icon name="chevron-back-outline" class="back"></ion-icon>
+  </button>
+
+  <div class="TheCloth">
+    <img [src]="selectedItem.imagePath" alt="">
+  </div>
+
+  <div class="nameitem">
+    {{selectedItem.foggyText}}
+  </div>
+
+  <div class="priceDetails">
+    <div *ngFor="let data of checkboxData; let i = index" class="imageWrapper">
+      <div class="ChosenImage">
+        <img *ngIf="data.picture" [src]="'data:image/jpeg;base64,' + data.picture" alt="Uploaded Image {{ i + 1 }}">
+        <div *ngIf="!data.picture" class="placeholder">?</div>
+      </div>
+      <span class="imageNumber" *ngIf="data.number">{{ data.number }} Rs~</span>
+    </div>
+
+    <div class="calculatedPrice">
+      <div class="ModelPrice">
+        <div class="price">{{selectedItem.price}}</div>
+         {{calculatedPrice}}
+      </div>
+    </div>
+</div>
+
+  <div class="slider" *ngIf="selectedItem.type === 'skirt' || selectedItem.type === 'dress' || selectedItem.type === 'kurta'">
+    <ion-range [min]="1" [max]="selectedItem.maxRangeValue" [(ngModel)]="sliderValue" (ionChange)="calculatePrice()" [pin]="true" [ticks]="true" [snaps]="true"></ion-range>
+  </div>
+
+  <div class="container">
+    <div *ngFor="let _ of getArray(selectedItem.numberOfCheckBoxes); let i = index" class="CheckBox" (click)="openModal(i)">
+      <div *ngIf="checkboxData[i] && checkboxData[i].picture && checkboxData[i].number" class="checked">&#10004;</div>
+    </div>
+  </div>
+
+  <div class="Pockets">
+
+  </div>
+
+
+  <div *ngIf="showModal" class="modal" [ngClass]="{'floatIn': showModal, 'fade-out': animateOut}">
+    <div class="modal-content">
+      <input type="file" id="fileInput" (change)="onFileChange($event)" style="display: none"/>
+  
+      <input type="text" [(ngModel)]="currentData.number" placeholder="Price Per Metre" required>
+  
+      <!-- Image upload container -->
+      <label for="fileInput" class="image-upload-container">
+        <!-- Show loading text when isLoading is true -->
+        <div *ngIf="isLoading" class="loading-placeholder"><div *ngIf="isLoading" class="loader"></div></div>
+        
+        <!-- Show camera icon initially and when neither loading nor uploaded -->
+        <div *ngIf="!isLoading && !fileUploaded" class="placeholder">
+          <ion-icon name="camera-outline" [class.red]="cameraRed"></ion-icon>
+        </div>
+  
+        <!-- Show checkmark icon when file is uploaded -->
+        <div *ngIf="!isLoading && fileUploaded" class="placeholder">
+          <ion-icon name="checkmark-outline"></ion-icon>
+        </div>
+      </label>
+  
+      <button (click)="submitModal()">Submit</button>
+    </div>
+  </div>
+
+  <div class="FinalButton" [class.active]="allCheckboxesInteracted()" [attr.disabled]="allCheckboxesInteracted() ? null : true" (click)="populateFinalItem()">
+    Confirm
+  </div>
+
+
+
+  <div class="additional" (click)="OpenModalAd()" ></div>
+
+
+  <div *ngIf="showModalAd" class="modal" [ngClass]="{'floatIn': showModalAd, 'fade-out': animateOut}">
+    <div class="modal-content">
+  
+      <input type="text" [(ngModel)]="finalItem.Details" placeholder="Additional Details" required class="custom-input">
+   
+      
+
+  
+      <button (click)="close()">Submit </button>
+    </div>
+  </div>
+  
+
+</ion-content>

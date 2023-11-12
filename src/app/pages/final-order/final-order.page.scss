@@ -1,0 +1,423 @@
+
+ion-content.custom-background {
+    --background: #131312;
+}
+
+.back-button {
+    position: absolute;
+    top: 10px;        // Adjust the top position as needed
+    left: 10px;       // Adjust the left position as needed
+    z-index: 100;     // To ensure it's above other content
+    width: 50px;
+    height: 35px;
+    border-radius: 5px;
+    background-color: rgb(255, 229, 180, 0.7);
+    
+  }
+
+.TheCloth {
+    position: absolute;
+    left: 140px;
+    bottom:270px; 
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+    width: 700px;
+    border-radius: 20px;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+  }
+}
+
+.nameitem {
+    position: absolute;
+    border-radius: 10px;
+    left: 190px;
+    top: 110px; 
+    width: 600px;
+    height: 50px;
+    background-color: rgba(216, 182, 119);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: #131312;
+    font-weight: bold;
+
+
+}
+
+.priceDetails {
+    position: absolute;
+    right: 150px;
+    top: 80px;
+    border: 8px solid rgba(216, 182, 119);
+    height: 800px;
+    width: 700px;
+    border-radius: 15px;
+    display: grid;
+    gap: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.slider {
+    position: absolute;
+    left: 140px;
+    bottom: 220px;
+    width: 700px;
+    height: 40px;
+}
+
+ion-range::part(tick) {
+    background: #131312;
+  }
+  
+ion-range::part(tick-active) {
+background: white;
+}
+
+ion-range::part(pin) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  
+    background:  rgba(216, 182, 119);
+    color: rgb(0, 0, 0);
+  
+    border-radius: 50%;
+    transform: scale(1.01);
+  
+    top: -20px;
+  
+    min-width: 28px;
+    height: 28px;
+    transition: transform 120ms ease, background 120ms ease;
+  }
+
+  ion-range::part(pin)::before {
+    content: none;
+  }
+
+  
+ion-range::part(knob) {
+    background:  rgba(216, 182, 119);
+  }
+  
+  ion-range::part(bar) {
+    background: rgb(114, 103, 83);
+  }
+  
+  ion-range::part(bar-active) {
+    background: rgb(216, 182, 119);
+  }
+
+.container {
+    display: flex;
+    flex-direction: column; /* This makes the child divs stack vertically */
+    gap: 50px;
+    position:absolute;
+    left:875px;
+    top:230px
+}
+
+.CheckBox {
+  width: 50px;
+  height: 50px;
+  padding: 10px; 
+  border: 3px solid rgba(216, 182, 119);
+  position: relative;
+
+  .checked {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 24px;
+  }
+}
+
+.FinalButton {
+    position:absolute;
+    bottom:75px;
+    left:290px;
+    width: 400px;
+    height: 100px;
+    background-color: rgb(201, 185, 157);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:#131312; 
+    font-weight: bold;
+    font-size: 50px;
+
+    &.active {
+      background-color:  rgb(216, 182, 119); // Active color
+      cursor: pointer;
+  }
+}
+
+
+
+.additional {
+  position: absolute;
+  left: 975px;
+  top :800px;
+  width: 70px;
+  height: 70px; /* This will make each child take the full width of the container */
+  padding: 10px; 
+  border: 3px solid rgba(216, 182, 119);
+}
+
+
+
+  .modal {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.modal-content {
+  position: relative;
+  background-color: #131312;
+  padding: 20px;
+  border-radius: 8px;
+  width: 50%;
+  height: 40%;
+  border: 5px solid rgba(216, 182, 119);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width: 600px) {
+  .modal-content {
+      width: 80%;     /* Increase width on smaller screens */
+      height: 60%;    /* Increase height on smaller screens */
+  }
+}
+
+
+
+.modal-content input[type="text"] {
+  position: absolute;
+  bottom: 40px;  /* Adjust this value */
+  right: 370px;  /* Adjust this value */
+}
+
+.modal-content input[type="file"],
+.modal-content input[type="text"] {
+     /* Adds a subtle shadow */
+    transition: all 0.3s; /* Smoothens property changes */
+}
+
+
+
+.modal-content button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #50C878; /* Adjust color as needed */
+  color: white;
+  cursor: pointer;
+  display: block;
+  margin: 15px auto;
+  transition: background-color 0.3s;
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+}
+
+.red ion-icon {
+  color: red;
+}
+
+
+
+
+.ChosenImage {
+  margin-top: 32px;
+  margin-left: 28px;
+  width: 475px;
+  height: 100px;
+  border: 3px solid rgba(216, 182, 119);
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; // this ensures the image covers the entire container
+}
+}
+
+
+.placeholder {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3em;  /* Adjust size of question mark */
+  font-weight: bold;
+  color: rgba(216, 182, 119);
+}
+
+.imageWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+}
+
+.imageNumber {
+  font-size: 30px;
+  font-weight: bold;
+  color: rgba(216, 182, 119);
+  margin-left: 15px; 
+  margin-top: 25px;
+  /* Adjust as needed for positioning and styling */
+}
+
+.calculatedPrice {
+  border: 8px solid rgba(216, 182, 119);
+  height: 200px;
+  width: 640px;
+  position:absolute;
+  bottom: 20px;
+  left: 22px;
+  border-radius: 15px;
+  background-color: rgb(56, 45, 26); 
+}
+
+
+@keyframes floatIn {
+  from {
+      opacity: 0;
+      transform: translateY(30px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+@keyframes floatOut {
+  from {
+      opacity: 1;
+      transform: translateY(0);
+  }
+  to {
+      opacity: 0;
+      transform: translateY(-30px);
+  }
+}
+
+.ModelPrice {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative; /* Pseudo-elements are positioned relative to their parent */
+  font-size: 20px;
+  color:rgba(216, 182, 119);
+  font-weight: bold;
+  padding-top: 10px;
+  padding-left: 10px; /* To ensure the container has padding on the left */
+  padding-right: 40px;
+}
+
+.ModelPrice::before {
+  content: 'Base model price:';
+  /* Align the text to the left if needed */
+}
+
+
+
+
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: floatIn 0.5s forwards;
+
+}
+.fade-out {
+  animation: floatOut 0.5s forwards;
+}
+
+
+.modal-content {
+  position: relative;
+  /* Add any additional styling such as padding, margins, etc. */
+}
+
+.image-upload-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Define a size for the container if necessary, or other styling */
+}
+
+.loader {
+  position: absolute;
+  top: 40%;
+  left: 47%;
+  transform: translate(-50%, -50%);
+  border: 5px solid transparent; /* Light grey */
+  border-top: 5px solid rgba(216, 182, 119); /* Blue */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.Pockets {
+  width: 10px;
+  height: 10px;
+  padding: 10px; 
+  border: 3px solid rgba(216, 182, 119);
+  position: absolute;
+  left: 860px;
+  bottom: 300px;
+  border-radius: 20px;
+}
+
+
+.custom-input {
+  width: 100%; /* Or any specific size */
+  padding: 10px; /* Padding inside the input */
+  border: 2px solid #3498db; /* Custom border */
+  border-radius: 5px; /* Rounded corners */
+  font-size: 16px; /* Larger font size */
+
+  /* Additional styles for aesthetics */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* subtle shadow for depth */
+  transition: border-color 0.3s; /* Smooth transition for interactions */
+
+  /* Style the placeholder text */
+  ::placeholder {
+    color: #7f8c8d; /* Light grey color for placeholder text */
+  }
+}
+
+/* Style the input on focus to give user feedback */
+.custom-input:focus {
+  outline: none; /* Removes the default focus outline */
+  border-color: #2ecc71; /* Changes border color on focus */
+}
