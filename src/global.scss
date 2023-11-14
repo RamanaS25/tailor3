@@ -69,6 +69,492 @@
     --background: rgba(255, 255, 255, 0); /* This makes the toolbar white with 50% opacity */
   }
   
+  .swiper-wrapper {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+  
+    .middle-box {
+      display: flex;
+      width: 1000px;   // Change as needed for desired width
+      height: 80vh; // Change as needed for desired height
+      flex-direction: row;
+      align-items: center;
+      border-radius: 18px;
+      background-color: rgb(255, 228, 179, 0.9) ; 
+      animation: floatIn 1s forwards;
+      background: 
+      url('/assets/background/Tree1.svg') center/cover no-repeat,
+      linear-gradient(to top, rgba(255, 228, 179, 0.9), #31312d);
+  
+    
+      
+  
+      .TheActualSwiper{
+        width: 400px;  // Adjust as necessary
+        height: 550px; // Adjust as necessary
+        margin-left: 60px; 
+        animation: floatIn 1s forwards;
+        position: relative;
+        z-index: 2;
+        margin-bottom: 60px;
+        
+      }
+  
+      
+  
+    }
+    
+  
+    ::ng-deep .swiper-slide  {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 18px;
+        font-size: 22px;
+        font-weight: bold;
+        color: black;
+        background-color: white;
+        width: 80%; 
+        
+    }
+  }
+  
+  .custom-button {
+    padding: 10px 20px; // Button padding
+    border-radius: 5px;
+    background-color: rgb(186, 146, 46); // Button color
+    cursor: pointer;
+    height: 50px;
+    width:300px;
+    margin-left: 120px;
+    font-weight: bold;
+    font-size: 24px;
+    margin-top: 40px
+    
+    
+  }
+  
+  .button-container {
+    position: fixed; /* Keep the button container fixed */
+    z-index: 1;
+    /* Set the button's position relative to the viewport */
+    bottom: 40px; /* Adjust as needed */
+  }
+  
+  
+  
+  .ModelDetails {
+    background-color: #131312;  
+    width: 450px;
+    height: 700px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 40px;
+    color: rgba(216, 182, 119);
+    margin-left: 525px;
+    position: fixed; /* Keep the button container fixed */
+    z-index: 1;
+  }
+  
+  
+  .main-container {
+    display: flex; // Create a flex container.
+    justify-content: center; // Center align items.
+    align-items: center;
+    height: 100vh; // Take up the full viewport height.
+    overflow: hidden;
+    
+    
+  }
+  
+  .cards-container {
+    display: flex; // To layout cards in a vertical stack.
+    flex-direction: column ;
+    gap: 50px; // Spacing between cards.
+    margin: 0 50px;
+    
+    .card {
+      position: relative;
+      background: linear-gradient(to top, rgba(255, 228, 179, 0.9), #31312d);
+      border-radius: 10px;
+      width: 300px;
+      height: 150px;
+      animation: fadeIn 1s ease-out forwards;
+    }
+    .card-content {
+      z-index: 0;  /* Add this line */
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      position: relative;  /* Add this line */
+      z-index: 1;  /* Change this to 1 */
+    }
+  
+    .card.selected::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgb(186, 146, 46);
+      border-radius: 10px;
+      z-index: -1;
+    }
+  }
+  
+  .cards-container:first-child {
+    margin-left: 75px; // Adjust this value as per your preference
+  }
+  
+  .cards-container:last-child {
+    margin-right: 75px; // Adjust this value as per your preference
+  }
+  
+  
+  
+  .DisplayedModelName {
+    position: absolute;
+    top: 30px;      /* adjust as needed */
+    left: 50px;     /* adjust as needed */
+    font-size: 60px;
+  }
+  
+  /* Styles for DisplayedText */
+  .DisplayedText {
+    position: absolute;
+    top: 175px;   /* adjust as needed */
+    left: 50px;    /* adjust as needed */
+    font-size: 30px;
+  }
+  
+  .DisplayedPrice {
+    position: absolute;
+    top: 210px;   /* adjust as needed */
+    left: 50px;
+    font-size: 80px;
+    color:  #50C878;
+    background: url('./assets/fonts/Emerald.jpg') no-repeat;
+    -webkit-background-clip: text;
+    color: transparent;
+    display: inline-block; /* or block, as required */
+    background-size: cover;
+  }
+  
+  .gallery {
+    position: absolute;
+    width: 300px;
+    height: 200px;
+    background-color: rgb(184, 164, 132);
+    bottom: 90px;
+    left: 75px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  
+  .overlay2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgb(184, 164, 132, 0.1); /* This is a black tint, adjust as needed */
+    z-index: 1;
+  }
+  
+  
+  .ad {
+    position: absolute;
+    bottom: 300px;
+    left: 75px;
+    font-size: 20px;
+  }
+  
+  .SwiperModal {
+    --height: 80vh;
+    --width: 80%;
+  }
+  
+  .gay {
+    width: 500px;
+    height: 300px;  
+    background-color:#50C878;
+  }
+  
+  .gay2 {
+    width: 600px;
+    height: 300px;  
+  }
+
+
+
+
+
+  //  final order
+
+
+  .additional {
+    position: absolute;
+    left: 975px;
+    top :800px;
+    width: 70px;
+    height: 70px; /* This will make each child take the full width of the container */
+    padding: 10px; 
+    border: 3px solid rgba(216, 182, 119);
+  }
+  
+  
+  
+    .modal {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+  }
+  
+  .modal-content {
+    position: relative;
+    background-color: #131312;
+    padding: 20px;
+    border-radius: 8px;
+    width: 50%;
+    height: 40%;
+    border: 5px solid rgba(216, 182, 119);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  @media screen and (max-width: 600px) {
+    .modal-content {
+        width: 80%;     /* Increase width on smaller screens */
+        height: 60%;    /* Increase height on smaller screens */
+    }
+  }
+  
+  
+  
+  .modal-content input[type="text"] {
+    position: absolute;
+    bottom: 40px;  /* Adjust this value */
+    right: 370px;  /* Adjust this value */
+  }
+  
+  .modal-content input[type="file"],
+  .modal-content input[type="text"] {
+       /* Adds a subtle shadow */
+      transition: all 0.3s; /* Smoothens property changes */
+  }
+  
+  
+  
+  .modal-content button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #50C878; /* Adjust color as needed */
+    color: white;
+    cursor: pointer;
+    display: block;
+    margin: 15px auto;
+    transition: background-color 0.3s;
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+  }
+  
+  .red ion-icon {
+    color: red;
+  }
+  
+  
+  
+  
+  .ChosenImage {
+    margin-top: 32px;
+    margin-left: 28px;
+    width: 475px;
+    height: 100px;
+    border: 3px solid rgba(216, 182, 119);
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    
+  
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; // this ensures the image covers the entire container
+  }
+  }
+  
+  
+  .placeholder {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3em;  /* Adjust size of question mark */
+    font-weight: bold;
+    color: rgba(216, 182, 119);
+  }
+  
+  .imageWrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  
+  }
+  
+  .imageNumber {
+    font-size: 30px;
+    font-weight: bold;
+    color: rgba(216, 182, 119);
+    margin-left: 15px; 
+    margin-top: 25px;
+    /* Adjust as needed for positioning and styling */
+  }
+  
+  .calculatedPrice {
+    border: 8px solid rgba(216, 182, 119);
+    height: 200px;
+    width: 640px;
+    position:absolute;
+    bottom: 20px;
+    left: 22px;
+    border-radius: 15px;
+    background-color: rgb(56, 45, 26); 
+  }
+  
+  
+  @keyframes floatIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+  }
+  
+  @keyframes floatOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+  }
+  
+  .ModelPrice {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative; /* Pseudo-elements are positioned relative to their parent */
+    font-size: 20px;
+    color:rgba(216, 182, 119);
+    font-weight: bold;
+    padding-top: 10px;
+    padding-left: 10px; /* To ensure the container has padding on the left */
+    padding-right: 40px;
+  }
+  
+  .ModelPrice::before {
+    content: 'Base model price:';
+    /* Align the text to the left if needed */
+  }
+  
+  
+  
+  
+  .modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: floatIn 0.5s forwards;
+  
+  }
+  .fade-out {
+    animation: floatOut 0.5s forwards;
+  }
+  
+  
+  .modal-content {
+    position: relative;
+    /* Add any additional styling such as padding, margins, etc. */
+  }
+  
+  .image-upload-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Define a size for the container if necessary, or other styling */
+  }
+  
+  .loader {
+    position: absolute;
+    top: 40%;
+    left: 47%;
+    transform: translate(-50%, -50%);
+    border: 5px solid transparent; /* Light grey */
+    border-top: 5px solid rgba(216, 182, 119); /* Blue */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .Pockets {
+    width: 10px;
+    height: 10px;
+    padding: 10px; 
+    border: 3px solid rgba(216, 182, 119);
+    position: absolute;
+    left: 860px;
+    bottom: 300px;
+    border-radius: 20px;
+  }
+  
+  
+  .custom-input {
+    width: 100%; /* Or any specific size */
+    padding: 10px; /* Padding inside the input */
+    border: 2px solid #3498db; /* Custom border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Larger font size */
+  
+    /* Additional styles for aesthetics */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* subtle shadow for depth */
+    transition: border-color 0.3s; /* Smooth transition for interactions */
+  
+    /* Style the placeholder text */
+    ::placeholder {
+      color: #7f8c8d; /* Light grey color for placeholder text */
+    }
+  }
+  
+  /* Style the input on focus to give user feedback */
+  .custom-input:focus {
+    outline: none; /* Removes the default focus outline */
+    border-color: #2ecc71; /* Changes border color on focus */
+  }
   
 
 /* Core CSS required for Ionic components to work properly */
